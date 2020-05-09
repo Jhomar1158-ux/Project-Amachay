@@ -119,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Losiento, no se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
                 }
             }
         });
