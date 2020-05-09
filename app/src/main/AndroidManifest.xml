@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Doctor.MapDoctorActivity"></activity>
+        <activity android:name=".triaje"></activity>
+        <activity android:name=".mapa" />
+        <activity android:name=".numero_emergencia" />
+        <activity android:name=".covid_peru" />
+        <activity android:name=".covid_mundial" />
+        <activity android:name=".pantalla_sintomas" />
+        <activity android:name=".pantalla_novedades" />
+        <activity android:name=".pantalla_consejos" />
+        <activity android:name=".perfil" />
+        <activity android:name=".menu_principal" />
+        <activity android:name=".activities.Doctor.MapDoctorActivity" />
         <activity android:name=".activities.Client.MapClientActivity" />
         <activity android:name=".activities.Doctor.RegisterDoctorActivity" />
         <activity
@@ -33,7 +42,9 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

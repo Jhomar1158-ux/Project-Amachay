@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.amachay.R;
 import com.example.amachay.activities.Doctor.MapDoctorActivity;
 import com.example.amachay.activities.Doctor.RegisterDoctorActivity;
+import com.example.amachay.menu_principal;
 import com.example.amachay.providers.AuthProvider;
 import com.example.amachay.providers.ClientProvider;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,6 +53,9 @@ public class RegisterActivity extends AppCompatActivity {
         mAuthProvider = new AuthProvider();
 
         mClientProvider = new ClientProvider();
+
+
+
 //El último boolean hace referencia a si activo el botón de atrás
 
         //INSTANCIAMOS EL MAUTH
@@ -70,6 +74,15 @@ public class RegisterActivity extends AppCompatActivity {
                     clickRegister();
                 }
             });
+
+
+        mButtonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RegisterActivity.this,menu_principal.class);
+                startActivity(i);
+            }
+        });
 
     }
 

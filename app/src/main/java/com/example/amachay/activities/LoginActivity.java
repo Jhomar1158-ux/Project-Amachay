@@ -16,6 +16,7 @@ import com.example.amachay.R;
 import com.example.amachay.activities.Client.MapClientActivity;
 import com.example.amachay.activities.Client.RegisterActivity;
 import com.example.amachay.activities.Doctor.MapDoctorActivity;
+import com.example.amachay.menu_principal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -75,8 +76,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //CREAMOS UNA FUNCIÓN LLAMADA LOGIN
                 login();
+                //aqui deberia mandarme al menu principal ...
             }
         });
+
 
 
     }
