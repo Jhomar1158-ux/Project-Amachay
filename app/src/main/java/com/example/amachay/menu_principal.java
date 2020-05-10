@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.amachay.activities.Client.MapClientActivity;
+import com.example.amachay.activities.Client.RegisterActivity;
+import com.example.amachay.activities.Doctor.MapDoctorActivity;
+import com.example.amachay.activities.Doctor.RegisterDoctorActivity;
+
 public class menu_principal extends AppCompatActivity {
     //declaracion de las variables
     ImageButton bot_consejos;
@@ -30,6 +35,8 @@ public class menu_principal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+        final int valor_cliente = (int) getIntent().getSerializableExtra("cliente");
+        final int valor_doctor = (int) getIntent().getSerializableExtra("doctor");
 
         //inicializando botones .... van primero botones, luego textos
 
@@ -112,13 +119,39 @@ public class menu_principal extends AppCompatActivity {
             }
         });
 
+
+
+        //JHOMAR
         bot_mapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(menu_principal.this,mapa.class);
-                startActivity(i);
+                if(valor_cliente==1)
+                {
+                    Intent intent = new Intent(menu_principal.this, MapClientActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                }
+                if(valor_doctor==2)
+                {
+                    Intent intent = new Intent(menu_principal.this, MapDoctorActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("doctor",2);
+
+                    startActivity(intent);
+                }
+
+
+
+
+
             }
         });
+
+
+
+
+
 
         bot_triaje.setOnClickListener(new View.OnClickListener() {
             @Override

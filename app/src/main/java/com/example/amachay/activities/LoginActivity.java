@@ -76,14 +76,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //CREAMOS UNA FUNCIÓN LLAMADA LOGIN
                 login();
-                //aqui deberia mandarme al menu principal ...
             }
         });
 
 
-
     }
-// CREAMOS LA FUNCIÓN LOGIN
+    // CREAMOS LA FUNCIÓN LOGIN
     private void login() {
         //OBTENEMOS LA INFORMACIÓN QUE INGRESA EL USUARIO
         String email = mTextInputEmail.getText().toString();
@@ -112,32 +110,32 @@ public class LoginActivity extends AppCompatActivity {
                     //AQUÍ VEMOS QUÉ HAREMOS LO QUE DE SE TERMINE DE EJECUTAR
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //SI LA TAREA FUE EXITOSA
-                            if (task.isSuccessful())
+                        if (task.isSuccessful())
+                        {
+                            String user = mPref.getString("user","");
+                            if(user.equals("client"))
                             {
-                                String user = mPref.getString("user","");
-                                if(user.equals("client"))
-                                {
-                                    Intent intent = new Intent(LoginActivity.this, MapClientActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+                                Intent intent = new Intent(LoginActivity.this, MapClientActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
 
-                                }
-                                else
-                                {
-                                    Intent intent = new Intent(LoginActivity.this, MapDoctorActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-
-
-                                }
                             }
-                            //EN CASO CONTRARIO
                             else
-                                {
+                            {
+                                Intent intent = new Intent(LoginActivity.this, MapDoctorActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
 
-                                Toast.makeText(LoginActivity.this,"La contraseña es incorrecta.",Toast.LENGTH_SHORT).show();
 
                             }
+                        }
+                        //EN CASO CONTRARIO
+                        else
+                        {
+
+                            Toast.makeText(LoginActivity.this,"La contraseña es incorrecta.",Toast.LENGTH_SHORT).show();
+
+                        }
 //DEJAR DE MOSTRAR EL DIALOG
                         mDialog.dismiss();
                     }

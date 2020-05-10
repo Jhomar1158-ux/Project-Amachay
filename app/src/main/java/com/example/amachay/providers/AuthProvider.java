@@ -10,18 +10,18 @@ public class AuthProvider {
 
 
     //CREAMOS UN CONSTUCTOR
-        public AuthProvider()
-        {
+    public AuthProvider()
+    {
 
-            mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        }
+    }
 
-        public Task<AuthResult> register(String email, String password)
-        {
-            return mAuth.createUserWithEmailAndPassword(email, password);
+    public Task<AuthResult> register(String email, String password)
+    {
+        return mAuth.createUserWithEmailAndPassword(email, password);
 
-        }
+    }
     public Task<AuthResult> login(String email, String password)
     {
         return mAuth.signInWithEmailAndPassword(email, password);
@@ -34,4 +34,22 @@ public class AuthProvider {
         mAuth.signOut();
 
     }
+    public String getId()
+    {
+
+        return mAuth.getCurrentUser().getUid();
+    }
+    public  boolean existSession()
+    {
+        boolean exist = false;
+        if(mAuth.getCurrentUser()!=null)
+        {
+
+            exist = true;
+        }
+        return exist;
+
+    }
+
+
 }

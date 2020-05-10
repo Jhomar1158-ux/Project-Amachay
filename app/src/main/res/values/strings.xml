@@ -1,7 +1,7 @@
 <resources>
-    //string login,registro y mapa
+
     <string name="app_name">Amachay</string>
-    // strings menu principal
+
     <string name="title_sintomas">SÍNTOMAS</string>
     <string name="title_consejos">CONSEJOS</string>
     <string name="title_novedades">NOVEDADES</string>

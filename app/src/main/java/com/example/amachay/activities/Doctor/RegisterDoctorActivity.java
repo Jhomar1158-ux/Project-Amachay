@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.amachay.R;
 import com.example.amachay.includes.MyToolbar;
+import com.example.amachay.menu_principal;
 import com.example.amachay.models.Doctor;
 import com.example.amachay.providers.AuthProvider;
 import com.example.amachay.providers.DoctorProvider;
@@ -126,12 +127,14 @@ public class RegisterDoctorActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(RegisterDoctorActivity.this, MapDoctorActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    Intent intent = new Intent(RegisterDoctorActivity.this, menu_principal.class);
+                       //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("doctor",2);
+
                         startActivity(intent);
                 } else {
 
-                    Toast.makeText(RegisterDoctorActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterDoctorActivity.this, "No se pudo registrar el médico", Toast.LENGTH_SHORT).show();
 
 
                 }

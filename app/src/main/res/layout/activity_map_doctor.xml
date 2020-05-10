@@ -18,6 +18,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-       />
+        />
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CONECTARSE"
+        android:layout_gravity="bottom"
+        android:layout_margin="30dp"
+        android:textColor="@color/colorBlano"
+        android:background="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

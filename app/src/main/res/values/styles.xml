@@ -6,7 +6,6 @@
 
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/color_barraMenu_dia</item> //esto quita el color morado en la parte superior de la pantalla
     </style>
 
 

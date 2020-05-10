@@ -53,9 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
         mAuthProvider = new AuthProvider();
 
         mClientProvider = new ClientProvider();
-
-
-
 //El último boolean hace referencia a si activo el botón de atrás
 
         //INSTANCIAMOS EL MAUTH
@@ -67,20 +64,11 @@ public class RegisterActivity extends AppCompatActivity {
         mTextInputName = findViewById(R.id.textInputName);
         mTextInputPassword = findViewById(R.id.textInputPassword);
 
-            mButtonRegister.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    clickRegister();
-                }
-            });
-
-
         mButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegisterActivity.this,menu_principal.class);
-                startActivity(i);
+
+                clickRegister();
             }
         });
 
@@ -99,8 +87,8 @@ public class RegisterActivity extends AppCompatActivity {
             {
 
                 mDialog.show();
-                    //CREAMOS UN MÉTODO QUE RECIBE UN EMAIL Y UN PASSWORD
-              register(name, email,password);
+                //CREAMOS UN MÉTODO QUE RECIBE UN EMAIL Y UN PASSWORD
+                register(name, email,password);
             }
             else
             {
@@ -115,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this,"Ingrese todos los campos" , Toast.LENGTH_SHORT).show();
 
         }
+
     }
 
     void register( final String name,final String email, String password ) {
@@ -126,13 +115,15 @@ public class RegisterActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     //CON ESTO SE OBTIENE EL ID DEL USUARIO
                     String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                     Client client = new Client(id, name, email);
                     //ESTO QUIERE DECIR QUE EL USUARIO SE REGISTRO CORRECTAMENTE
+
                     create(client);
 
                 }
                 else {
-                    Toast.makeText(RegisterActivity.this, "Losiento, no se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -143,9 +134,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    Intent intent = new Intent(RegisterActivity.this, MapDoctorActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    Intent intent = new Intent(RegisterActivity.this, menu_principal.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                   intent.putExtra("cliente",1);
+                   startActivity(intent);
+
+
+
                 }
                 else {
                     Toast.makeText(RegisterActivity.this,"No se pudo registrar el usuario",Toast.LENGTH_LONG).show();
