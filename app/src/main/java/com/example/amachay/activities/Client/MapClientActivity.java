@@ -134,8 +134,8 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
                     }
                 }
 
-                LatLng driverLatLng = new LatLng(location.latitude, location.longitude);
-                Marker marker = mMap.addMarker(new MarkerOptions().position(driverLatLng).title("Médico disponible").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_ambulance)));
+                LatLng doctorLatLng = new LatLng(location.latitude, location.longitude);
+                Marker marker = mMap.addMarker(new MarkerOptions().position(doctorLatLng).title("Médico disponible").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_ambulance)));
                 marker.setTag(key);
                 mDoctorsMarkers.add(marker);
 

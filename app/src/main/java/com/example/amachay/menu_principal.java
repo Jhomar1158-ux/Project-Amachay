@@ -35,8 +35,14 @@ public class menu_principal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+        // REGISTRO AL MENU PPRINCIPAL
+        //en caso de ya estar registrado : cliente = 10 , doctor=11
+        //en caso de registrarse recien : cliente = 1 , doctor = 2
+
         final int valor_cliente = (int) getIntent().getSerializableExtra("cliente");
         final int valor_doctor = (int) getIntent().getSerializableExtra("doctor");
+        final int cliente_registrado = (int) getIntent().getSerializableExtra("cliente_registrado");
+        final int doctor_registrado = (int) getIntent().getSerializableExtra("doctor_registrado");
 
         //inicializando botones .... van primero botones, luego textos
 
@@ -125,18 +131,17 @@ public class menu_principal extends AppCompatActivity {
         bot_mapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(valor_cliente==1)
+                if(valor_cliente==1 || cliente_registrado==10)
                 {
                     Intent intent = new Intent(menu_principal.this, MapClientActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
                 }
-                if(valor_doctor==2)
+                if(valor_doctor==2 || doctor_registrado==11)
                 {
                     Intent intent = new Intent(menu_principal.this, MapDoctorActivity.class);
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("doctor",2);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(intent);
                 }

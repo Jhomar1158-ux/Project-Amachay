@@ -115,16 +115,31 @@ public class LoginActivity extends AppCompatActivity {
                             String user = mPref.getString("user","");
                             if(user.equals("client"))
                             {
-                                Intent intent = new Intent(LoginActivity.this, MapClientActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                Intent intent = new Intent(LoginActivity.this, menu_principal.class);
+                                intent.putExtra("cliente_registrado",10);
                                 startActivity(intent);
 
-                            }
-                            else
-                            {
-                                Intent intent = new Intent(LoginActivity.this, MapDoctorActivity.class);
+
+
+
+                                /*Intent intent = new Intent(LoginActivity.this, MapClientActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);*/
+
+                            }
+                            if(user.equals("doctor"))
+                            {
+
+
+                                Intent intent = new Intent(LoginActivity.this, menu_principal.class);
+                                intent.putExtra("doctor_registrado",11);
                                 startActivity(intent);
+
+
+
+                                /*Intent intent = new Intent(LoginActivity.this, MapDoctorActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);*/
 
 
                             }
