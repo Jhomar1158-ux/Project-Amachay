@@ -29,4 +29,16 @@
     <string name="valor_apellido">Aguilar</string>
     <string name="correo">CORREO</string>
     <string name="valor_correo">l....eo-199...@....com</string>
+    //PARTE SINTOMAS
+    <string name="dolor_de_garganta">Dolor de Garganta</string>
+    <string name="falta_de_oxigeno">Falta de oxigeno</string>
+    <string name="diagn_stico">Diagnóstico</string>
+    <string name="ojos_irritados">Ojos irritados</string>
+    <string name="dificultad_para_respirar">Dificultad para respirar</string>
+    <string name="fiebre_">Fiebre</string>
+    <string name="fatiga">Fatiga</string>
+    <string name="tos_">Tos</string>
+    <string name="debilidad">Debilidad</string>
+    <string name="estornudos">Estornudos</string>
+    <string name="congesti_n_nasal">Congestión nasal</string>
 </resources>
