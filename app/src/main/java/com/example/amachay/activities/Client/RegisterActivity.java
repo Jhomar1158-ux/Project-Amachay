@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     Intent intent = new Intent(RegisterActivity.this, menu_principal.class);
                     //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                   intent.putExtra("cliente",1);
+                   intent.putExtra("cliente","1");
                    startActivity(intent);
 
 

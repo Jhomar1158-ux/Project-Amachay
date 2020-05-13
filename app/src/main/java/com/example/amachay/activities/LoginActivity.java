@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.amachay.R;
-import com.example.amachay.activities.Client.MapClientActivity;
-import com.example.amachay.activities.Client.RegisterActivity;
-import com.example.amachay.activities.Doctor.MapDoctorActivity;
 import com.example.amachay.menu_principal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import dmax.dialog.SpotsDialog;
 import com.example.amachay.includes.MyToolbar;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,13 +45,17 @@ public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences mPref;
 
-
+    public static final String key= "cliente_registrado" ;
+    public static final String key2= "doctor_registrado";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //CON ESTO MOSTRAMOS EL TOOLBAR
+
+
+
         MyToolbar.show(this, "Login de usuario", true);
 
         //VAMOS A INSTANCIAR LAS VISTAS
@@ -82,10 +85,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     // CREAMOS LA FUNCIÓN LOGIN
-    private void login() {
+    public void login() {
         //OBTENEMOS LA INFORMACIÓN QUE INGRESA EL USUARIO
-        String email = mTextInputEmail.getText().toString();
-        String password = mTextInputPassword.getText().toString();
+        String email = Objects.requireNonNull(mTextInputEmail.getText()).toString();
+        String password = Objects.requireNonNull(mTextInputPassword.getText()).toString();
 
         //HAREMOS LAS VALIDACIONES
         //VERIFICAMOS SI EL USUARIO HA INGRESADO SU CORREO Y SI EL PASSWORD ESTÁ VACÍO
@@ -116,7 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                             if(user.equals("client"))
                             {
                                 Intent intent = new Intent(LoginActivity.this, menu_principal.class);
-                                intent.putExtra("cliente_registrado",10);
+                                intent.putExtra(key,"10");
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
 
 
@@ -132,7 +136,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                 Intent intent = new Intent(LoginActivity.this, menu_principal.class);
-                                intent.putExtra("doctor_registrado",11);
+                                intent.putExtra(key2,"11");
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
 
 

@@ -129,7 +129,7 @@ public class RegisterDoctorActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(RegisterDoctorActivity.this, menu_principal.class);
                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("doctor",2);
+                    intent.putExtra("doctor","2");
 
                         startActivity(intent);
                 } else {

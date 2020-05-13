@@ -53,7 +53,6 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
 
     private AuthProvider mAuthProvider;
     private GoogleMap mMap;
-    private SupportMapFragment mMapFragment;
     private LocationRequest mLocationRequest;
     private FusedLocationProviderClient mFusedLocation;
 
@@ -63,8 +62,28 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
     private GeofireProvider mGeofireProvider;
     private LatLng mCurrentLatlng;
 
-    private List<Marker> mDoctorsMarkers = new ArrayList<>();
+    private List<Marker> mDoctorsMarkers;
     private boolean mIsFirstTime = true;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map_client);
+        mDoctorsMarkers = new ArrayList<>();
+
+        MyToolbar.show(this, "Cliente", false);
+
+        mAuthProvider = new AuthProvider();
+
+        mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
+
+        SupportMapFragment mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert mMapFragment != null;
+        mMapFragment.getMapAsync(this);
+
+        mGeofireProvider = new GeofireProvider();
+    }
+
+
     LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -102,21 +121,6 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
             }
         }
     };
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_client);
-        MyToolbar.show(this, "Cliente", false);
-
-        mAuthProvider = new AuthProvider();
-
-        mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
-
-        mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mMapFragment.getMapAsync(this);
-
-        mGeofireProvider = new GeofireProvider();
-    }
 
     private void getActiveDoctor()
     {
@@ -245,6 +249,7 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
         boolean isActive = false;
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        assert locationManager != null;
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             isActive = true;
         }

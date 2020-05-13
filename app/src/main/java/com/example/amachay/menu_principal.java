@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.amachay.activities.Client.MapClientActivity;
-import com.example.amachay.activities.Client.RegisterActivity;
 import com.example.amachay.activities.Doctor.MapDoctorActivity;
-import com.example.amachay.activities.Doctor.RegisterDoctorActivity;
+import com.example.amachay.activities.LoginActivity;
 
 public class menu_principal extends AppCompatActivity {
     //declaracion de las variables
@@ -28,7 +27,10 @@ public class menu_principal extends AppCompatActivity {
 
     ImageButton bot_perfil;
 
-
+    String valor_cliente;
+    String valor_doctor;
+    String cliente_registrado;
+    String doctor_registrado;
 
 
     @Override
@@ -39,26 +41,24 @@ public class menu_principal extends AppCompatActivity {
         //en caso de ya estar registrado : cliente = 10 , doctor=11
         //en caso de registrarse recien : cliente = 1 , doctor = 2
 
-        final int valor_cliente = (int) getIntent().getSerializableExtra("cliente");
-        final int valor_doctor = (int) getIntent().getSerializableExtra("doctor");
-        final int cliente_registrado = (int) getIntent().getSerializableExtra("cliente_registrado");
-        final int doctor_registrado = (int) getIntent().getSerializableExtra("doctor_registrado");
+
 
         //inicializando botones .... van primero botones, luego textos
 
         //botones de la barra inferior
-        bot_consejos = (ImageButton) findViewById(R.id.boton_barra_consejos);
-        bot_sintomas = (ImageButton) findViewById(R.id.boton_barra_sintomas);
-        bot_novedades = (ImageButton) findViewById(R.id.boton_barra_novedades);
+        bot_consejos = findViewById(R.id.boton_barra_consejos);
+        bot_sintomas = findViewById(R.id.boton_barra_sintomas);
+        bot_novedades = findViewById(R.id.boton_barra_novedades);
         //botones de las 6 opciones generales
-        bot_covid_mundial = (ImageButton) findViewById(R.id.botonCoivdMUNDO);
-        bot_covid_peru = (ImageButton) findViewById(R.id.botonCovidPERU);
-        bot_triaje = (ImageButton) findViewById(R.id.botonTriaje);
-        bot_emergencia = (ImageButton) findViewById(R.id.botonEmergencia);
-        bot_mapa = (ImageButton) findViewById(R.id.botonMapa);
+        bot_covid_mundial = findViewById(R.id.botonCoivdMUNDO);
+        bot_covid_peru = findViewById(R.id.botonCovidPERU);
+        bot_triaje = findViewById(R.id.botonTriaje);
+        bot_emergencia = findViewById(R.id.botonEmergencia);
+        bot_mapa = findViewById(R.id.botonMapa);
+
 
         //boton de perfil
-        bot_perfil = (ImageButton) findViewById(R.id.boton_perfil);
+        bot_perfil = findViewById(R.id.boton_perfil);
 
         //textos cambiantes con la base de datos
 
@@ -131,25 +131,7 @@ public class menu_principal extends AppCompatActivity {
         bot_mapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(valor_cliente==1 || cliente_registrado==10)
-                {
-                    Intent intent = new Intent(menu_principal.this, MapClientActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-
-                }
-                if(valor_doctor==2 || doctor_registrado==11)
-                {
-                    Intent intent = new Intent(menu_principal.this, MapDoctorActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                    startActivity(intent);
-                }
-
-
-
-
-
+            boton_mapa();
             }
         });
 
@@ -165,10 +147,74 @@ public class menu_principal extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void boton_mapa(){
+        //recibimos los strings
+
+        recibir_datos_desde_loginActivity();
+        recibir_datos_desde_loginActivity_1();
+        recibir_datos_desde_RegisterActivity();
+        recibir_datos_desde_RegisterDoctorActivity();
+
+        //confirmamos que no apuntan a NULL
+
+       if(cliente_registrado!=null){
+           Intent intent = new Intent(menu_principal.this, MapClientActivity.class);
+          // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           startActivity(intent);
+       }
+       if(doctor_registrado!=null) {
+           Intent intent = new Intent(menu_principal.this, MapDoctorActivity.class);
+           //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           startActivity(intent);
+       }
+       if(valor_cliente!=null){
+           Intent intent = new Intent(menu_principal.this, MapClientActivity.class);
+          // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           startActivity(intent);
+       }
+       if(valor_doctor!=null){
+           Intent intent = new Intent(menu_principal.this, MapDoctorActivity.class);
+          // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           startActivity(intent);
+       }
+    }
 
 
 
-
+    public void recibir_datos_desde_loginActivity(){
+        // se recibe "cliente registrado" = 10 && "doctor registrado" = 11
+        Bundle recibe = getIntent().getExtras();
+        if(recibe!=null){
+            cliente_registrado=recibe.getString(LoginActivity.key);
+        }
 
     }
+    public void recibir_datos_desde_loginActivity_1(){
+        // se recibe "cliente registrado" = 10 && "doctor registrado" = 11
+        Bundle recibe = getIntent().getExtras();
+        if(recibe!=null){
+            doctor_registrado= recibe.getString(LoginActivity.key2);
+        }
+
+    }
+
+    public void recibir_datos_desde_RegisterActivity(){
+        // se recibe "cliente" = 1
+        Bundle recibe = getIntent().getExtras();
+        if(recibe!=null){
+            valor_cliente = recibe.getString("cliente");
+        }
+    }
+
+    public void recibir_datos_desde_RegisterDoctorActivity(){
+        // se recibe "doctor" = 2
+        Bundle recibe = getIntent().getExtras();
+        if(recibe!=null) {
+            valor_doctor = recibe.getString("doctor");
+        }
+    }
+
+
 }
