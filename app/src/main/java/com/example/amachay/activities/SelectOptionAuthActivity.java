@@ -32,7 +32,6 @@ public class SelectOptionAuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_option_auth);
         //REFERENCIAMOS AL TOOLBAR
 
-        MyToolbar.show(this,"Seleccionar una opción",true);
         //LE DECIMOS QUE TIENE UN BOTÓN QUE VA HACIA ATRÁS, le decimos que sí
 
 
