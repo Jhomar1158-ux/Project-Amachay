@@ -26,8 +26,8 @@
         android:text="CONECTARSE"
         android:layout_gravity="bottom"
         android:layout_margin="30dp"
-        android:textColor="@color/colorBlano"
+        android:textColor="@color/colorNegro"
         android:background="@color/colorPrimaryDark"
-        android:backgroundTint="@color/colorPrimaryDark"/>
+        android:backgroundTint="@color/color_barraMenu_dia"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

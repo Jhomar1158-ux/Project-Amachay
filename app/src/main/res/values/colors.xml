@@ -2,11 +2,15 @@
 <resources>
     // colores login, registro y mapa
     <color name="colorNegro">#0A0A0A</color>
-    <color name="colorLogin">#B1BED5</color>
-    <color name="colorRegistro">#F4F3F3</color>
+    <color name="colorBotones">#B1BED5</color>
+    <color name="colorDatos">#F4F3F3</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorBlano">#FFFFFF</color>
+    <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorLoginModoNoche">#3B6978</color>
+    <color name="colorBtn">#009688</color>
+    <color name="colorTool">#BDBDBD</color>
+
 //colore del menú
     <color name="color_fondoMenuPrincipal_noche">#5D918E</color>
     <color name="color_fondoMenuPrincipal_dia">#F4F3F3</color>

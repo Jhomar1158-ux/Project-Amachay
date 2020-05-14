@@ -1,27 +1,35 @@
 package com.example.amachay.activities.Doctor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.amachay.R;
 import com.example.amachay.activities.Client.MapClientActivity;
 import com.example.amachay.activities.MainActivity;
 import com.example.amachay.includes.MyToolbar;
 import com.example.amachay.providers.AuthProvider;
+import com.example.amachay.providers.GeofireProvider;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -32,8 +40,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -41,9 +53,20 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
     private SupportMapFragment mMapFragment;
     private   AuthProvider mAuthProvider;
 
+
+    private GeofireProvider mGeofireProvider;
     private LocationRequest mLocationRequest;
     private FusedLocationProviderClient mFusedLocation;
     private final static int LOCATION_REQUEST_CODE= 1;
+    private final static int SETTINGS_REQUEST_CODE = 2;
+
+    private Marker mMarker;
+
+    private Button mButtonConnect;
+
+    private boolean mIsConnect = false;
+
+    private LatLng mCurrentLatlng;
 
     LocationCallback mLocationCallback = new LocationCallback()
     {
@@ -53,14 +76,29 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
             for(Location location:locationResult.getLocations()){
                 if(getApplicationContext()!= null)
                 {
-                    //OBTENER LA LOCALIZACIÓN DEL USURIAO EM TIEMPO REAL
-                        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(
-                                new CameraPosition.Builder()
-                                .target(new LatLng(location.getLatitude(),location.getLongitude()))
-                                .zoom(15f)
-                                .build()
 
-                        ));
+                    mCurrentLatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                    if(mMarker != null)
+                    {
+                        mMarker.remove();
+
+                    }
+                    mMarker = mMap.addMarker(new MarkerOptions().position(
+                            new LatLng(location.getLatitude(),location.getLongitude())
+                            )
+                                    .title("Tu posición")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_ambulance))
+                    );
+                    //OBTENER LA LOCALIZACIÓN DEL USURIAO EM TIEMPO REAL
+                    mMap.moveCamera(CameraUpdateFactory.newCameraPosition(
+                            new CameraPosition.Builder()
+                                    .target(new LatLng(location.getLatitude(),location.getLongitude()))
+                                    .zoom(15f)
+                                    .build()
+
+                    ));
+
+                    updateLocation();
 
                 }
 
@@ -77,15 +115,41 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_doctor);
 
-        MyToolbar.show(this,"Mapa del Médico",false);
+        MyToolbar.show(this,"Médico",false);
 
         mAuthProvider = new AuthProvider();
-
+        mGeofireProvider = new GeofireProvider();
         //Con esta propiedad vamos a poder iniciar o detener la ubicación del usuario
         mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
 
         mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
+        mButtonConnect = findViewById(R.id.btnConnect);
+        mButtonConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mIsConnect)
+                {
+
+                    disconnect();
+                }
+                else
+                {
+
+                    startLocation();
+                }
+            }
+        });
+
+    }
+
+    private void updateLocation()
+    {
+        if(mAuthProvider.existSession() && mCurrentLatlng != null)
+        {
+            mGeofireProvider.saveLocation(mAuthProvider.getId(),mCurrentLatlng);
+
+        }
 
 
     }
@@ -96,6 +160,7 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        //Nos ubica un punto de referencia
 
         mLocationRequest = new LocationRequest();
         //Tiempo de la ubicación en el mapa
@@ -105,51 +170,124 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setSmallestDisplacement(5);
 
-        startLocation();
+
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == LOCATION_REQUEST_CODE)
-        {
-            //Pregunatamos si el usuario concedió los permisos
-            if(grantResults.length> 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    if (gpsActived()) {
+                        mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                        mMap.setMyLocationEnabled(false);//Le damos false para omitir el punto azul que está por defecto
 
-            {
-                if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                {
-                mFusedLocation.requestLocationUpdates(mLocationRequest,mLocationCallback, Looper.myLooper());
-
+                    }
+                    else {
+                        showAlertDialogNOGPS();
+                    }
                 }
-
+                else {
+                    checkLocationPermissions();
+                }
             }
-        }
-    }
-    private void startLocation()
-    {
-        //Versión 23 de Mashmello
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-            {
-                mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-        }
-            else
-            {
-
+            else {
                 checkLocationPermissions();
             }
         }
-        else
-        {
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SETTINGS_REQUEST_CODE && gpsActived())  {
             mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-
-
+            mMap.setMyLocationEnabled(false);//Le damos false para omitir el punto azul que está por defecto
 
         }
+        else {
+            showAlertDialogNOGPS();
+        }
+    }
 
+
+    private void showAlertDialogNOGPS() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Por favor activa tu ubicacion para continuar")
+                .setPositiveButton("Configuraciones", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), SETTINGS_REQUEST_CODE);
+                    }
+                }).create().show();
+    }
+
+
+    private boolean gpsActived() {
+        boolean isActive = false;
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            isActive = true;
+        }
+        return isActive;
+    }
+
+    private void disconnect()
+    {
+        mButtonConnect.setText("CONECTARSE");
+        mIsConnect = false;
+        if(mFusedLocation != null)
+        {
+            mButtonConnect.setText("CONECTARSE");
+            mIsConnect = false;
+            mFusedLocation.removeLocationUpdates(mLocationCallback);
+            if(mAuthProvider.existSession())
+            {
+                mGeofireProvider.removeLocation(mAuthProvider.getId());
+
+            }
+
+        }
+        else
+        {
+
+            Toast.makeText(this,"No te puedes desconectar",Toast.LENGTH_SHORT).show();
+        }
 
     }
+
+    private void startLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if (gpsActived()) {
+                    mButtonConnect.setText("DESCONECTARSE");
+                    mIsConnect =true;
+                    mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                    mMap.setMyLocationEnabled(false);//Le damos false para omitir el punto azul que está por defecto
+
+                }
+                else {
+                    showAlertDialogNOGPS();
+                }
+            }
+            else {
+                checkLocationPermissions();
+            }
+        } else {
+            if (gpsActived()) {
+                mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                mMap.setMyLocationEnabled(false);//Le damos false para omitir el punto azul que está por defecto
+
+            }
+            else {
+                showAlertDialogNOGPS();
+            }
+        }
+    }
+
 
 
     private void checkLocationPermissions()
@@ -159,8 +297,8 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION))
             {
                 new AlertDialog.Builder(this)
-                .setTitle("Proporciona los permisos para continuar")
-                .setMessage("Esta aplicación requiere de los permisos de ubicación para poder utilizarse")
+                        .setTitle("Proporciona los permisos para continuar")
+                        .setMessage("Esta aplicación requiere de los permisos de ubicación para poder utilizarse")
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -205,6 +343,7 @@ public class MapDoctorActivity extends AppCompatActivity implements OnMapReadyCa
     }
     void logout()
     {
+        disconnect();
         mAuthProvider.logout();
         //Cerrar sesión
         Intent intent = new Intent(MapDoctorActivity.this, MainActivity.class);

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".triaje"></activity>
+        <activity android:name=".activities.Client.DetailRequestActivity"></activity>
+        <activity android:name=".triaje" />
         <activity android:name=".mapa" />
         <activity android:name=".numero_emergencia" />
         <activity android:name=".covid_peru" />

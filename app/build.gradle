@@ -43,8 +43,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //GEOFIRE
+    //Geofire
     implementation 'com.firebase:geofire-android:2.2.0'
+    //BUSCADOR DE GOOGLE
+    implementation "com.google.android.libraries.places:places:1.1.0"
+    //RESTRINGIR BÚSQUEDA
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
 }
 
 

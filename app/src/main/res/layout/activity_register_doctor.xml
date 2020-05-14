@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/colorTool"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         >
 
@@ -229,9 +230,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/color_barraMenu_dia"
                 android:text="REGISTRAR"
-                android:textColor="@color/colorBlano"
+
 
                 />
 
