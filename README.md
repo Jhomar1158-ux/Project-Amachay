@@ -1,0 +1,3 @@
+# ProyectAmachayCovid
+App Amachay-COVID
+
