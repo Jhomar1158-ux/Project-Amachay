@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import com.example.amachay.R;
 import com.example.amachay.activities.Client.MapClientActivity;
-import com.example.amachay.activities.Client.RegisterActivity;
 import com.example.amachay.activities.Doctor.MapDoctorActivity;
 import com.google.firebase.auth.FirebaseAuth;
 

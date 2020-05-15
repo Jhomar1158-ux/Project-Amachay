@@ -4,8 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".perfil"
+    tools:context=".activities.perfil"
     android:background="@drawable/fondo_pantalla_perfil">
+
+    <Button
+        android:id="@+id/boton_cerrar_sesion"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="@string/cerrar_sesion"
+        android:textColor="@color/color_barraMenu_noche"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
 
     <ImageButton
         android:id="@+id/imageButton4"

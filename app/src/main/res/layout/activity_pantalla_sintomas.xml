@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_barraMenu_dia"
-    tools:context=".pantalla_sintomas">
+    tools:context=".activities.pantalla_sintomas">
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"

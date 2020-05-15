@@ -57,7 +57,6 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.firebase.database.DatabaseError;
 import com.google.maps.android.SphericalUtil;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

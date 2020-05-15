@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.amachay.R;
-import com.example.amachay.menu_principal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import dmax.dialog.SpotsDialog;
-import com.example.amachay.includes.MyToolbar;
 
 import java.util.Objects;
 
@@ -53,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //CON ESTO MOSTRAMOS EL TOOLBAR
-
 
 
 

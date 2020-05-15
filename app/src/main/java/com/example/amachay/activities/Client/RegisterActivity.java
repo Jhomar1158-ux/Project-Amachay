@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.amachay.R;
-import com.example.amachay.activities.Doctor.MapDoctorActivity;
-import com.example.amachay.activities.Doctor.RegisterDoctorActivity;
-import com.example.amachay.menu_principal;
+import com.example.amachay.activities.menu_principal;
 import com.example.amachay.providers.AuthProvider;
 import com.example.amachay.providers.ClientProvider;
 import com.google.android.gms.tasks.OnCompleteListener;

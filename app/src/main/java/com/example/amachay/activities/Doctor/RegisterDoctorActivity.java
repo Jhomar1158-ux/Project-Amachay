@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.amachay.R;
 import com.example.amachay.includes.MyToolbar;
-import com.example.amachay.menu_principal;
+import com.example.amachay.activities.menu_principal;
 import com.example.amachay.models.Doctor;
 import com.example.amachay.providers.AuthProvider;
 import com.example.amachay.providers.DoctorProvider;
