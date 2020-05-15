@@ -41,4 +41,12 @@
     <string name="debilidad">Debilidad</string>
     <string name="estornudos">Estornudos</string>
     <string name="congesti_n_nasal">Congestión nasal</string>
+    //PARTE NOVEDADES
+    <string name="nov_titulo">Titulo</string>
+    <string name="nov_fecha">Fecha</string>
+    <string name="nov_descripcion">Descripcion</string>
+    <string name="nov_contenido">Contenido</string>
+    <string name="menu_nacional">Perú</string>
+    <string name="menu_fotos">Fotos</string>
+    <string name="menu_global">Global</string>
 </resources>

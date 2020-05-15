@@ -49,6 +49,16 @@ dependencies {
     implementation "com.google.android.libraries.places:places:1.1.0"
     //RESTRINGIR BÚSQUEDA
     implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+    //implement recyclerview and cardview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //para justificar texto
+    implementation 'com.codesgood:justifiedtextview:1.1.0'
+    //implement firebase
+    implementation 'com.firebaseui:firebase-ui-database:4.2.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 

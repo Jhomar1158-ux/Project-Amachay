@@ -23,6 +23,9 @@
     <color name="color_barraMenu_dia">#B1BED5</color>
     <color name="color_barraMenu_noche">#204051</color>
 
-
+    //color novedades
+    <color name="colorPrimary">#000000</color>
+    <color name="colorDia1">#B1BED5</color>
+    <color name="colorDia2">#F4F3F3</color>
 
 </resources>
