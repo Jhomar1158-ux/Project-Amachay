@@ -28,4 +28,9 @@
     <color name="colorDia1">#B1BED5</color>
     <color name="colorDia2">#F4F3F3</color>
 
+    //color numeros emergencia
+    <color name="colorButton">#B1BED5</color>
+    <color name="colorBgIcon">#84A9AC</color>
+    <color name="colorStartGradient">#F4F3F3</color>
+    <color name="letterEx">#3B6978</color>
 </resources>

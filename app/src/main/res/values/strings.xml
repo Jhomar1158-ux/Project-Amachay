@@ -49,4 +49,21 @@
     <string name="menu_nacional">Perú</string>
     <string name="menu_fotos">Fotos</string>
     <string name="menu_global">Global</string>
+    //PARTE NUMEROS EMERGENCIA
+    <string name="Covid">Teleconsultas por Covid\n113</string>
+    <string name="SAMU">SAMU\n106</string>
+    <string name="PNP">PNP\n105</string>
+    <string name="EsSalud">EsSaludo\n106</string>
+    <string name="Bomberos">Bomberos\n116</string>
+    <string name="Tittle">NÚMEROS DE EMERGENCIA</string>
+    <string name="mainTitle">SI NO RESPONDE EL 113</string>
+    <string name="title1">Lima Norte</string>
+    <string name="number1">945 256 004\n956 257 753</string>
+    <string name="schedule1">L-V de 8am-4pm</string>
+    <string name="title2">Lima Centro</string>
+    <string name="number2">943 970 913\n943 970 644</string>
+    <string name="title3">Lima Este</string>
+    <string name="number3">362 8602\n362 7088\n362 8062</string>
+    <string name="title4">Callao</string>
+    <string name="number4">01 429 8128\n01 429 8174</string>
 </resources>

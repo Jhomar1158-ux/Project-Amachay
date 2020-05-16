@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Match_Match"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ScrollView style="@style/Match_Match">
+
+        <LinearLayout
+            style="@style/Match_Match"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Match_Wrap"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/Wrap_Wrap"
+                    android:text="@string/mainTitle"
+                    android:textColor="@color/letterEx"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+                <ImageView
+                    style="@style/Wrap_Wrap"
+                    android:src="@drawable/ic_line">
+
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match_Wrap"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/Match_Match"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        style="@style/Match_Match"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:background="@drawable/grandientbackground"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="7dp">
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/title1"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/number1"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/schedule1"
+                            android:textColor="@color/letterEx"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/Match_Match"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:background="@drawable/grandientbackground"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="7dp">
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/title2"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/number2"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/Match_Match"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        style="@style/Match_Match"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:background="@drawable/grandientbackground"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="7dp">
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/title3"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/number3"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/Match_Match"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:background="@drawable/grandientbackground"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="7dp"
+                        android:layout_marginStart="5dp">
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/title4"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/number4"
+                            android:textColor="@color/letterEx"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            style="@style/Wrap_Wrap.StyleText"
+                            android:text="@string/schedule1"
+                            android:textColor="@color/letterEx"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

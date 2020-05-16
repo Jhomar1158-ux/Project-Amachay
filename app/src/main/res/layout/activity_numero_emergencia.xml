@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/Match_Match"
+    android:background="@drawable/background"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".numero_emergencia">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView style="@style/Match_Wrap">
+
+        <LinearLayout style="@style/Match_Match"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Match_Wrap"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/Match_Wrap"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:src="@drawable/ic_return"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="clickReturn">
+                    </ImageView>
+
+                    <TextView
+                        style="@style/Wrap_Wrap"
+                        android:layout_gravity="center"
+                        android:text="@string/Tittle"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textSize="22sp"></TextView>
+
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Wrap_Wrap"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:onClick="clickDialogue"
+                    android:src="@drawable/ic_exclamation"></ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match_Match"
+                android:gravity="center">
+
+                <FrameLayout
+                    style="@style/Wrap_Wrap">
+
+                    <ImageView
+                        style="@style/Wrap_Wrap"
+                        android:background="@drawable/ic_springphone"></ImageView>
+
+                    <LinearLayout
+                        style="@style/Wrap_Wrap"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp">
+
+                        <Button
+                            android:id="@+id/buttonCovid"
+                            style="@style/Match_Wrap.StyleButtoms"
+                            android:drawableLeft="@drawable/ic_callcenter"
+                            android:text="@string/Covid"
+                            android:drawableStart="@drawable/ic_callcenter" />
+
+                        <Button
+                            android:id="@+id/buttonSAMU"
+                            style="@style/Match_Wrap.StyleButtoms"
+                            android:drawableStart="@drawable/ic_medico"
+                            android:drawableLeft="@drawable/ic_medico"
+                            android:text="@string/SAMU" />
+
+                        <Button
+                            android:id="@+id/buttonPNP"
+                            style="@style/Match_Wrap.StyleButtoms"
+                            android:drawableLeft="@drawable/ic_police"
+                            android:text="@string/PNP"
+                            android:drawableStart="@drawable/ic_police" />
+
+                        <Button
+                            android:id="@+id/buttonESSALUD"
+                            style="@style/Match_Wrap.StyleButtoms"
+                            android:drawableLeft="@drawable/ic_medico"
+                            android:text="@string/EsSalud"
+                            android:drawableStart="@drawable/ic_medico" />
+
+                        <Button
+                            android:id="@+id/buttonBOMBEROS"
+                            style="@style/Match_Wrap.StyleButtoms"
+                            android:drawableLeft="@drawable/ic_bombero"
+                            android:text="@string/Bomberos"
+                            android:drawableStart="@drawable/ic_bombero" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
