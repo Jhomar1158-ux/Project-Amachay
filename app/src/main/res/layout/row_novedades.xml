@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/colorDia1"
+    app:cardUseCompatPadding="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="225dp"
+            android:layout_height="140dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/colorDia2"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/rImagenNoticia"
+                android:layout_width="225dp"
+                android:layout_height="140dp"
+                android:src="@drawable/loading"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.codesgood.views.JustifiedTextView
+                android:id="@+id/rTituloNoticia"
+                android:layout_width="wrap_content"
+                android:layout_height="165dp"
+                android:text="@string/nov_titulo"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="5dp"/>
+
+            <TextView
+                android:id="@+id/rFechaNoticia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/nov_fecha"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:layout_gravity="bottom"/>
+
+            <TextView
+                android:id="@+id/rDescripcionNoticia"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+            <TextView
+                android:id="@+id/rContenidoNoticia"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
