@@ -172,8 +172,9 @@ public class pantalla_sintomas extends AppCompatActivity implements View.OnClick
                 if (suma > 7) {
                     color = "guinda";
                 }
-
-
+                Intent aDiagnostico =new Intent(pantalla_sintomas.this,pantalla_diagnostico.class);
+                aDiagnostico.putExtra("diagnostique",color);
+                startActivity(aDiagnostico);
                 break;
 
             case R.id.atras:
