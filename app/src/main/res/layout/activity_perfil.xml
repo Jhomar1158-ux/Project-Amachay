@@ -8,6 +8,32 @@
     android:background="@drawable/fondo_pantalla_perfil">
 
     <ImageButton
+        android:id="@+id/boton_regreso_a_menu"
+        android:layout_width="64dp"
+        android:layout_height="51dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017"
+        app:srcCompat="@drawable/atrass" />
+
+    <ImageButton
+        android:id="@+id/boton_cerrar_sesion"
+        android:layout_width="64dp"
+        android:layout_height="51dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018"
+        app:srcCompat="@drawable/persona_perfil" />
+
+    <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="64dp"
         android:layout_height="51dp"
@@ -138,22 +164,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.485" />
-
-    <Button
-        android:id="@+id/boton_regreso_a_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volver"
-        android:textSize="16dp"
-        android:textColor="@color/color_barraMenu_noche"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
