@@ -26,7 +26,14 @@
     //color novedades
     <color name="colorPrimary">#000000</color>
     <color name="colorDia1">#B1BED5</color>
-    <color name="colorDia2">#F4F3F3</color>
+    <color name="colorDia2">#CFCFCF</color>
+    <color name="colorNoticias1">#94C3A5</color>
+    <color name="colorNoticias2">#84A9AC</color>
+    <color name="colorNoticias3">#98ACD3</color>
+    <color name="colorNoticias4">#9CC0CC</color>
+    <color name="colorTextoNoticias">#063514</color>
+    <color name="colorTextoNoticias1">#001911</color>
+    <color name="colorTextoNoticias2">#47529F</color>
 
     //color numeros emergencia
     <color name="colorButton">#B1BED5</color>

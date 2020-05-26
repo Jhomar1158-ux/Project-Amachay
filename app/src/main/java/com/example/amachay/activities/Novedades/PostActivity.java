@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.amachay.R;
 
+import java.util.Objects;
+
 public class PostActivity extends AppCompatActivity {
 
     TextView mTituloTv, mFechaTv;

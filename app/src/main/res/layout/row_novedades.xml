@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/colorDia1"
     app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/colorNoticias4"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="5dp">
 
@@ -25,7 +25,6 @@
                 android:id="@+id/rImagenNoticia"
                 android:layout_width="225dp"
                 android:layout_height="140dp"
-                android:src="@drawable/loading"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"/>
         </androidx.cardview.widget.CardView>
@@ -41,7 +40,8 @@
                 android:layout_height="165dp"
                 android:text="@string/nov_titulo"
                 android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/adamina"
                 android:layout_marginTop="1dp"
                 android:layout_marginStart="5dp"/>
 
@@ -52,7 +52,8 @@
                 android:gravity="end"
                 android:text="@string/nov_fecha"
                 android:textColor="@color/colorPrimary"
-                android:textSize="12sp"
+                android:textSize="10sp"
+                android:fontFamily="@font/aldrich"
                 android:layout_gravity="bottom"/>
 
             <TextView

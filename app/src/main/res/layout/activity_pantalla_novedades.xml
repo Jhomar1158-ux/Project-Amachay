@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         app:menu="@menu/navigationbuttom"
         android:layout_alignParentBottom="true"
+        app:itemTextColor="@color/textcolor"
         android:background="@drawable/rounded_novedades"/>
 
 </RelativeLayout>

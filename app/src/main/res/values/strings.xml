@@ -49,6 +49,8 @@
     <string name="menu_nacional">Perú</string>
     <string name="menu_fotos">Fotos</string>
     <string name="menu_global">Global</string>
+    <string name="tituloNoticiasNacionales">NOTICIAS NACIONALES</string>
+    <string name="tituloNoticiasGlobales">NOTICIAS GLOBALES</string>
     //PARTE NUMEROS EMERGENCIA
     <string name="Covid">Teleconsultas por Covid\n113</string>
     <string name="SAMU">SAMU\n106</string>
