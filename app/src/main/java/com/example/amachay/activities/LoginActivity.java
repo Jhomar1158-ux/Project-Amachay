@@ -119,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                                 //guardamos el email y pasword en las preferencias
                                 editor.putString("emailClient",email);
                                 editor.putString("paswordClient",password);
+                                editor.putString("estado","menu");
                                 editor.commit();
 
                                 Intent intent = new Intent(LoginActivity.this, menu_principal.class);
@@ -138,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 editor.putString("emailTienda",email);
                                 editor.putString("paswordTienda",password);
+                                editor.putString("estado","menu");
                                 editor.commit();
 
                                 Intent intent = new Intent(LoginActivity.this, menu_principal.class);

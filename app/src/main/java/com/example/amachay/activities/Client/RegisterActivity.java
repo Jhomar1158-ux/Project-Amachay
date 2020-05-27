@@ -122,6 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 //guardamos  preferencias cliente
                                 editor.putString("emailClient",email);
                                 editor.putString("paswordClient",pasword);
+                                editor.putString("estado","menu");
                                 editor.commit();
 
                                 Intent intent = new Intent(RegisterActivity.this, menu_principal.class);

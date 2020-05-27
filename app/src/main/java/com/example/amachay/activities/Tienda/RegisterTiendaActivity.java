@@ -135,6 +135,7 @@ public class RegisterTiendaActivity extends AppCompatActivity {
                                 //guardamos  preferencias cliente
                                 editor.putString("emailTienda",email);
                                 editor.putString("paswordTienda",pasword);
+                                editor.putString("estado","menu");
                                 editor.commit();
 
                                 Intent intent = new Intent(RegisterTiendaActivity.this, menu_principal.class);

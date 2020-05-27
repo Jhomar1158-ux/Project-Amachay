@@ -14,7 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.activity_perfil_tienda"></activity>
+        <activity android:name=".splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.activity_perfil_tienda" />
         <activity android:name=".activities.Novedades.PostActivity" />
         <activity
             android:name=".activities.Client.DetailRequestActivity"
@@ -42,11 +49,6 @@
             android:name=".activities.SelectOptionAuthActivity"
             android:parentActivityName=".activities.MainActivity" />
         <activity android:name=".activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.pantalla_diagnostico" />
 

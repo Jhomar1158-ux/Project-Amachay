@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //CREAMOS UN PARÁMETRO DE TIPO STRING
                 editor.putString("user","client");
-
+                //editor.putString("estado","registro");
 
                 //PROGRAMAMOS LO QUE QUEREMOS QUE HAGA EL BOTÓN
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    /*
     //posible causa de que cuando se abra la app siempre te mande al mapa
     @Override
     protected void onStart() {
@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(FirebaseAuth.getInstance().getCurrentUser()!= null)
         {
-            String user = mPref.getString("user","");
-            if(user.equals("client"))
+            String user = mPref.getString("estado","");
+            if(user.equals("registro"))
             {
-                Intent intent = new Intent(MainActivity.this, MapClientActivity.class);
+                Intent intent = new Intent(MainActivity.this, menu_principal.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    */
     // EL METODO LO COLOCAMOS DENTRO DEL MAIN ACTIVITY
     private void goToSelectAuth() {
 //USAMOS LA PROPIEDAD LLAMADA INTENT
@@ -117,4 +118,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 }
