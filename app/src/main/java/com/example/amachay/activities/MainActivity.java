@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    //posible causa de que cuando se abra la app siempre te mande al mapa
     @Override
     protected void onStart() {
         super.onStart();
@@ -91,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
             if(user.equals("client"))
             {
                 Intent intent = new Intent(MainActivity.this, MapClientActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
             }
             else
             {
                 Intent intent = new Intent(MainActivity.this, MapTiendaActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
             }

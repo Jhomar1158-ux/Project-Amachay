@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.amachay.R;
-import com.example.amachay.activities.Tienda.MapTiendaActivity;
-import com.example.amachay.menu_principal;
-import com.example.amachay.providers.AuthProvider;
-import com.example.amachay.providers.ClientProvider;
+import com.example.amachay.activities.menu_principal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import dmax.dialog.SpotsDialog;
 import com.example.amachay.includes.MyToolbar;
-import com.example.amachay.models.Client;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputEditText mTextInputPassword;
 
     AlertDialog mDialog;
-
+    SharedPreferences mPref;
 
     //nuveo firebase object
     FirebaseAuth mAuth;
@@ -54,9 +51,13 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         MyToolbar.show(this, "Registro de Usuario", true);
-        
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //preferencias
+        mPref = getApplicationContext().getSharedPreferences("typeUser", MODE_PRIVATE);
+
 //El último boolean hace referencia a si activo el botón de atrás
         //INSTANCIAMOS EL MAUTH
         //LOADING
@@ -103,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(final String name, final String email, final String pasword) {
+        final SharedPreferences.Editor editor = mPref.edit();
         mAuth.createUserWithEmailAndPassword(email, pasword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -111,12 +113,17 @@ public class RegisterActivity extends AppCompatActivity {
                     map.put("name", name);
                     map.put("email", email);
                     map.put("pasword", pasword);
-
+                    //podria colocarse las preferencias aqui
                     String id = mAuth.getCurrentUser().getUid();
                     mDatabase.child("Users").child("Cliente").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task2) {
                             if (task2.isSuccessful()) {
+                                //guardamos  preferencias cliente
+                                editor.putString("emailClient",email);
+                                editor.putString("paswordClient",pasword);
+                                editor.commit();
+
                                 Intent intent = new Intent(RegisterActivity.this, menu_principal.class);
                                 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("cliente", "1");

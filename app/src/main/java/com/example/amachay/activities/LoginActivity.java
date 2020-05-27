@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.amachay.R;
-import com.example.amachay.menu_principal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import dmax.dialog.SpotsDialog;
-import com.example.amachay.includes.MyToolbar;
 
 import java.util.Objects;
 
@@ -85,9 +83,10 @@ public class LoginActivity extends AppCompatActivity {
     }
     // CREAMOS LA FUNCIÓN LOGIN
     public void login() {
+        final SharedPreferences.Editor editor = mPref.edit();
         //OBTENEMOS LA INFORMACIÓN QUE INGRESA EL USUARIO
-        String email = Objects.requireNonNull(mTextInputEmail.getText()).toString();
-        String password = Objects.requireNonNull(mTextInputPassword.getText()).toString();
+        final String email = Objects.requireNonNull(mTextInputEmail.getText()).toString();
+        final String password = Objects.requireNonNull(mTextInputPassword.getText()).toString();
 
         //HAREMOS LAS VALIDACIONES
         //VERIFICAMOS SI EL USUARIO HA INGRESADO SU CORREO Y SI EL PASSWORD ESTÁ VACÍO
@@ -117,6 +116,11 @@ public class LoginActivity extends AppCompatActivity {
                             String user = mPref.getString("user","");
                             if(user.equals("client"))
                             {
+                                //guardamos el email y pasword en las preferencias
+                                editor.putString("emailClient",email);
+                                editor.putString("paswordClient",password);
+                                editor.commit();
+
                                 Intent intent = new Intent(LoginActivity.this, menu_principal.class);
                                 intent.putExtra(key,"10");
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -132,7 +136,9 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             if(user.equals("tienda"))
                             {
-
+                                editor.putString("emailTienda",email);
+                                editor.putString("paswordTienda",password);
+                                editor.commit();
 
                                 Intent intent = new Intent(LoginActivity.this, menu_principal.class);
                                 intent.putExtra(key2,"11");

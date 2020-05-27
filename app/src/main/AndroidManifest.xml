@@ -14,20 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Novedades.PostActivity"></activity>
+        <activity android:name=".activities.activity_perfil_tienda"></activity>
+        <activity android:name=".activities.Novedades.PostActivity" />
         <activity
             android:name=".activities.Client.DetailRequestActivity"
             android:parentActivityName=".activities.Client.MapClientActivity" />
-        <activity android:name=".triaje" />
-        <activity android:name=".mapa" />
-        <activity android:name=".numero_emergencia" />
-        <activity android:name=".covid_peru" />
-        <activity android:name=".covid_mundial" />
-        <activity android:name=".pantalla_sintomas" />
-        <activity android:name=".pantalla_novedades" />
-        <activity android:name=".pantalla_consejos" />
-        <activity android:name=".perfil" />
-        <activity android:name=".menu_principal" />
+        <activity android:name=".activities.triaje" />
+        <activity android:name=".activities.mapa" />
+        <activity android:name=".activities.numero_emergencia" />
+        <activity android:name=".activities.covid_peru" />
+        <activity android:name=".activities.covid_mundial" />
+        <activity android:name=".activities.pantalla_sintomas" />
+        <activity android:name=".activities.pantalla_novedades" />
+        <activity android:name=".activities.pantalla_consejos" />
+        <activity android:name=".activities.perfil_cliente" />
+        <activity android:name=".activities.menu_principal" />
         <activity android:name=".activities.Tienda.MapTiendaActivity" />
         <activity android:name=".activities.Client.MapClientActivity" />
         <activity android:name=".activities.Tienda.RegisterTiendaActivity" />
@@ -47,7 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pantalla_diagnostico" />
+        <activity android:name=".activities.pantalla_diagnostico" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

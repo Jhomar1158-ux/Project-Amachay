@@ -2,6 +2,7 @@ package com.example.amachay.activities.Tienda;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.amachay.R;
-import com.example.amachay.activities.Client.RegisterActivity;
 import com.example.amachay.includes.MyToolbar;
-import com.example.amachay.menu_principal;
-import com.example.amachay.models.Tienda;
-import com.example.amachay.providers.AuthProvider;
-import com.example.amachay.providers.TiendaProvider;
+import com.example.amachay.activities.menu_principal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -44,6 +41,7 @@ public class RegisterTiendaActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
 
+    SharedPreferences mPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +54,7 @@ public class RegisterTiendaActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mPref = getApplicationContext().getSharedPreferences("typeUser",MODE_PRIVATE);
         //LOADING
         mDialog = new SpotsDialog.Builder().setContext(RegisterTiendaActivity.this).setMessage("Espere un momento").build();
 
@@ -114,6 +113,7 @@ public class RegisterTiendaActivity extends AppCompatActivity {
     }
 
     public void registerTienda(final String name, final String email, final String pasword, final String nombretienda){
+        final SharedPreferences.Editor editor = mPref.edit();
         mAuth.createUserWithEmailAndPassword(email,pasword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -124,11 +124,19 @@ public class RegisterTiendaActivity extends AppCompatActivity {
                     map.put("pasword",pasword);
                     map.put("idTienda",nombretienda);
 
+                    //podrian colocarse las preferencias
+
                     String id = mAuth.getCurrentUser().getUid();
                     mDatabase.child("Users").child("Tienda").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task2) {
                             if(task2.isSuccessful()) {
+                                //guardar las preferencias
+                                //guardamos  preferencias cliente
+                                editor.putString("emailTienda",email);
+                                editor.putString("paswordTienda",pasword);
+                                editor.commit();
+
                                 Intent intent = new Intent(RegisterTiendaActivity.this, menu_principal.class);
                                 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("tienda","2");
