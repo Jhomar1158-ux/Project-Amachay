@@ -24,14 +24,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import dmax.dialog.SpotsDialog;
 import com.example.amachay.includes.MyToolbar;
 import com.example.amachay.models.Client;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    //CREAMOOS UN FIREBASE AUTH
-
-    AuthProvider mAuthProvider;
-
-    ClientProvider mClientProvider;
     //INSTANCIAMOS LAS VISTAS
     Button mButtonRegister;
 
@@ -43,16 +43,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     AlertDialog mDialog;
 
+
+    //nuveo firebase object
+    FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        MyToolbar.show(this,"Registro de Usuario",true);
-
-        mAuthProvider = new AuthProvider();
-
-        mClientProvider = new ClientProvider();
+        MyToolbar.show(this, "Registro de Usuario", true);
+        
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 //El último boolean hace referencia a si activo el botón de atrás
         //INSTANCIAMOS EL MAUTH
         //LOADING
@@ -73,8 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    void clickRegister()
-    {
+    void clickRegister() {
         final String name = mTextInputName.getText().toString();
         final String email = mTextInputEmail.getText().toString();
         final String password = mTextInputPassword.getText().toString();
@@ -82,123 +85,52 @@ public class RegisterActivity extends AppCompatActivity {
 //AHORA VALIDAMOS
         //SI EL NOMBRE NO ES VACIO, EL EMAIL NO ES VACIO , LA CONTRASEÑA NO ES VACIA
         if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-            if (password.length() >= 6)
-            {
+            if (password.length() >= 6) {
 
                 mDialog.show();
                 //CREAMOS UN MÉTODO QUE RECIBE UN EMAIL Y UN PASSWORD
-                register(name, email,password);
+                registerUser(name, email, password);
+            } else {
+
+                Toast.makeText(RegisterActivity.this, "La contraseña debe tener al menos 6 carácteres", Toast.LENGTH_SHORT).show();
             }
-            else
-            {
+        } else {
 
-                Toast.makeText(RegisterActivity.this,"La contraseña debe tener al menos 6 carácteres", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        else
-        {
-
-            Toast.makeText(RegisterActivity.this,"Ingrese todos los campos" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "Ingrese todos los campos", Toast.LENGTH_SHORT).show();
 
         }
 
     }
 
-    void register( final String name,final String email, String password ) {
-        mAuthProvider.register(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    public void registerUser(final String name, final String email, final String pasword) {
+        mAuth.createUserWithEmailAndPassword(email, pasword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                mDialog.hide();
-                //CON ESTO VALIDAMOS SI LA TAREA QUE SE HA GENERADO ES EXITOSA
                 if (task.isSuccessful()) {
-                    //CON ESTO SE OBTIENE EL ID DEL USUARIO
-                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("name", name);
+                    map.put("email", email);
+                    map.put("pasword", pasword);
 
-                    Client client = new Client(id, name, email);
-                    //ESTO QUIERE DECIR QUE EL USUARIO SE REGISTRO CORRECTAMENTE
-
-                    create(client);
-
-                }
-                else {
-                    Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    void create(Client client) {
-        mClientProvider.create(client).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Intent intent = new Intent(RegisterActivity.this, menu_principal.class);
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("cliente","1");
-                    startActivity(intent);
-                }
-                else {
-                    Toast.makeText(RegisterActivity.this,"No se pudo registrar el usuario",Toast.LENGTH_LONG).show();
+                    String id = mAuth.getCurrentUser().getUid();
+                    mDatabase.child("Users").child("Cliente").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task2) {
+                            if (task2.isSuccessful()) {
+                                Intent intent = new Intent(RegisterActivity.this, menu_principal.class);
+                                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                intent.putExtra("cliente", "1");
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(RegisterActivity.this, "No se pudo regstrar al usuario", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-    /*void saveUser(String id, String name , String email)
-    {
-
-        String selectedUser = mPref.getString("user", "");
-        User user = new User();
-        user.setEmail(email);
-        user.setName(name);
-
-        //PARA GUARDAR EL USUARIO
-        if(selectedUser.equals("com.example.amachay.activities.Medico"))
-        {
-            mDatabase.child("Users").child("Medicos").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    //SI LA TAREA FUE EXITOSA
-                    if(task.isSuccessful())
-                    {
-                        Toast.makeText(RegisterActivity.this,"Registro exitoso",Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-
-                        Toast.makeText(RegisterActivity.this,"Fallo el registro",Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-            });
-
-
-
-        }
-        else if(selectedUser.equals("Client"))
-        {
-            mDatabase.child("Users").child("Clientes").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-
-                        Toast.makeText(RegisterActivity.this,"Registro exitoso",Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-
-                        Toast.makeText(RegisterActivity.this,"Fallo el registro",Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-            });
-
-
-           // mDatabase.child("Users").child("Usuarios").push().setValue(user);
-
-        }
-
-
-    }*/
 }
+
