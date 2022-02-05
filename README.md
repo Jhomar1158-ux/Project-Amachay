@@ -6,9 +6,9 @@ Este aplicativo permitirá a su vez, que las personas tomen conciencia de autocu
 
 Progreso
 
-<a href='https://postimg.cc/3ksLfNhM' target='_blank'><img src='https://i.postimg.cc/3ksLfNhM/home.jpg' width="50px" alt='home'/></a>
-<a href='https://postimg.cc/MMDdGYQx' target='_blank'><img src='https://i.postimg.cc/MMDdGYQx/login.jpg' width="50px" alt='login'/></a>
-<a href='https://postimg.cc/3Wtt5nhF' target='_blank'><img src='https://i.postimg.cc/3Wtt5nhF/consejos.jpg' width="50px" alt='consejos'/></a>
-<a href='https://postimg.cc/56Gpjy6H' target='_blank'><img src='https://i.postimg.cc/56Gpjy6H/mapa-de-calor.jpg' width="50px" alt='mapa-de-calor'/></a>
-<a href='https://postimg.cc/XGVktyDP' target='_blank'><img src='https://i.postimg.cc/XGVktyDP/triaje-1.jpg' width="50px" alt='triaje-1'/></a>
-<a href='https://postimg.cc/p5rYLMvY' target='_blank'><img src='https://i.postimg.cc/p5rYLMvY/triaje-2.jpg' width="50px" alt='triaje-2'/></a>
+<a href='https://postimg.cc/3ksLfNhM' target='_blank'><img src='https://i.postimg.cc/3ksLfNhM/home.jpg' width="90px" alt='home'/></a>
+<a href='https://postimg.cc/MMDdGYQx' target='_blank'><img src='https://i.postimg.cc/MMDdGYQx/login.jpg' width="90px" alt='login'/></a>
+<a href='https://postimg.cc/3Wtt5nhF' target='_blank'><img src='https://i.postimg.cc/3Wtt5nhF/consejos.jpg' width="90px" alt='consejos'/></a>
+<a href='https://postimg.cc/56Gpjy6H' target='_blank'><img src='https://i.postimg.cc/56Gpjy6H/mapa-de-calor.jpg' width="90px" alt='mapa-de-calor'/></a>
+<a href='https://postimg.cc/XGVktyDP' target='_blank'><img src='https://i.postimg.cc/XGVktyDP/triaje-1.jpg' width="90px" alt='triaje-1'/></a>
+<a href='https://postimg.cc/p5rYLMvY' target='_blank'><img src='https://i.postimg.cc/p5rYLMvY/triaje-2.jpg' width="90px" alt='triaje-2'/></a>
